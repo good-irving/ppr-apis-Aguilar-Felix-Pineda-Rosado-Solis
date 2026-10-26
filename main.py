@@ -19,3 +19,11 @@ import requests
 carritos = obtener_carritos()
 print("Carritos descargados:", len(carritos))
 print ("Carritos:", carritos)
+
+resultados = []
+for carrito in carritos:
+    total = 0
+    for producto in carrito["products"]:
+        if producto["discountPercentage"] < 12:
+            total += producto["quantity"]
+    resultados.append({"userId": carrito["userId"], "total": total})
