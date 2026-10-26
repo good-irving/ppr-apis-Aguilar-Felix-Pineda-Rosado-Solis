@@ -41,3 +41,14 @@ user_id = mejor["userId"]
 total_validos = mejor["total"]
 print("Usuario con más productos válidos:", user_id)
 print("Total de productos válidos:", total_validos) 
+
+respuesta = requests.get(f"https://dummyjson.com/users/{user_id}")
+if respuesta.status_code == 200:
+    usuario = respuesta.json()
+else:
+    print("Error:", respuesta.status_code)
+    exit()
+print("Información del usuario con más productos válidos:")
+print("ID:", usuario["id"])
+print("Nombre:", usuario["firstName"], usuario["lastName"])
+print("Email:", usuario["email"])   
