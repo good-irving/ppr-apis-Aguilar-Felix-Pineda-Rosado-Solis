@@ -5,7 +5,7 @@ DESCUENTO_MAXIMO = 12
  
 def obtener_carritos():
     """Descarga todos los carritos de la API y los convierte a JSON."""
-    response = requests.get(f"{BASE_URL}?limit=0")
+    response = requests.get(f"{BASE_URL}")
     if response.status_code == 200:
         datos = response.json()
         return datos["carts"]
@@ -31,3 +31,13 @@ for carrito in carritos:
         numero += 1
         resultados.append({"numero": numero, "userId": carrito["userId"], "total": total})
         print("Carrito:", numero, "| Usuario:", carrito["userId"], "| Productos válidos:", total)
+
+mejor = resultados[0]
+for r in resultados:
+    if r["total"] > mejor["total"]:
+        mejor = r
+
+user_id = mejor["userId"]
+total_validos = mejor["total"]
+print("Usuario con más productos válidos:", user_id)
+print("Total de productos válidos:", total_validos) 
