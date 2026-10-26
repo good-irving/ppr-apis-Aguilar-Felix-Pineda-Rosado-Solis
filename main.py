@@ -52,3 +52,16 @@ print("Información del usuario con más productos válidos:")
 print("ID:", usuario["id"])
 print("Nombre:", usuario["firstName"], usuario["lastName"])
 print("Email:", usuario["email"])   
+
+nombre = usuario["firstName"]
+apellido = usuario["lastName"]
+ciudad = usuario["address"]["city"]
+
+mensaje = f"El cliente con más productos regulares es {nombre} {apellido} (ID: {user_id}), de la ciudad de {ciudad}. Compró un total de {total_validos} productos válidos."
+
+print("=" * 60)
+print(mensaje)
+print("=" * 60)
+
+with open("reporte_auditoria.txt", "w", encoding="utf-8") as archivo:
+    archivo.write("=" * 60 + "\n" + mensaje + "\n" + "=" * 60)
