@@ -21,9 +21,13 @@ print("Carritos descargados:", len(carritos))
 print ("Carritos:", carritos)
 
 resultados = []
+numero = 0
 for carrito in carritos:
     total = 0
     for producto in carrito["products"]:
         if producto["discountPercentage"] < 12:
             total += producto["quantity"]
-    resultados.append({"userId": carrito["userId"], "total": total})
+    if total > 0:
+        numero += 1
+        resultados.append({"numero": numero, "userId": carrito["userId"], "total": total})
+        print("Carrito:", numero, "| Usuario:", carrito["userId"], "| Productos válidos:", total)
